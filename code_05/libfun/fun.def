@@ -1,0 +1,5 @@
+;LIBRARY "libfun"
+LIBRARY "DLLfun"
+EXPORTS
+    max2 @1
+    min2 @2
