@@ -83,7 +83,7 @@ cmake ..
 make
 ```
 
-代码见pro01目录
+代码见pro01目录,若是动态库(即一个.h,一个.so) 上面的CMakeLists.txt也同样试用
 
 ---
 
