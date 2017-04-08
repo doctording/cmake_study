@@ -2,6 +2,9 @@
 
 * CMakeLists.txt
 将可执行文件安装到bin目录下
+
+CMAKE_INSTALL_PREFIX的默认定义是/usr/local(默认安装目录)
+
 ```
 PROJECT (HELLO)
 INCLUDE_DIRECTORIES(.)
@@ -21,6 +24,12 @@ INSTALL(TARGETS hello
 ```
 cmake -DCMAKE_INSTALL_PREFIX=/usr/local
 ```
+
+或 安装到默认的目录
+```
+cmake .
+```
+
 
 接着安装、运行即可
 ```
