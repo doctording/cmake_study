@@ -62,3 +62,71 @@ Install the project...
 ```
 
 ---
+
+# cmake install 头文件，静态库，可执行文件
+
+* 在code_04的基础上 src/CMakeLists.txt需要改写
+
+```
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/libfun)
+
+link_directories(${PROJECT_BINARY_DIR}/lib)
+
+set(APP_SRC main.cpp)
+
+# 可执行文件生成在 build/bin下面
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
+# 生成可执行文件
+add_executable(fun ${APP_SRC})
+
+# 可执行文件 需要链接 静态库
+target_link_libraries(fun libfun)
+
+# install 
+INSTALL(TARGETS fun
+        RUNTIME DESTINATION bin
+        )
+#INSTALL(PROGRAMS ${PROJECT_BINARY_DIR}/bin/fun 
+#       DESTINATION bin 
+#       PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ)
+
+INSTALL(FILES ${PROJECT_SOURCE_DIR}/libfun/fun.h DESTINATION include/fun)
+
+INSTALL(FILES ${PROJECT_BINARY_DIR}/lib/libfun.a DESTINATION lib)
+
+```
+
+*　接着仍然是在build目录下
+```
+$cmake ..
+$make 
+$suod make install
+```
+
+* 安装后截图
+
+```
+john@ubuntu:~/cmake_study/code_04/build$ sudo make install
+[sudo] password for john: 
+[ 50%] Built target libfun
+[100%] Built target fun
+Install the project...
+-- Install configuration: ""
+-- Installing: /usr/local/bin/fun
+-- Removed runtime path from "/usr/local/bin/fun"
+-- Installing: /usr/local/include/fun/fun.h
+-- Installing: /usr/local/lib/libfun.a
+
+```
+
+![](../cmake_install/imgs/01.png)
+
+* 编写测试代码
+测试自己安装的代码，见code_test_01文件夹下的代码
+测试运行截图
+
+![](../cmake_install/imgs/02.png)
+
+---
+
